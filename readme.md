@@ -11,10 +11,7 @@ This repository demonstrates the complete analytical lifecycle: **Automated Data
 
 ---
 
-## 🏗️ System Architecture & Data Flow
-
-Markdown
-# 📊 Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
+# Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
 
 <p align="left">
   <img src="[https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)" />
@@ -29,7 +26,7 @@ This repository demonstrates the complete analytical lifecycle: **Automated Data
 
 ---
 
-## 🏗️ System Architecture & Data Flow
+## System Architecture & Data Flow
 
 ```text
                      [ 8 Raw Olist Datasets (CSV) ]
@@ -64,7 +61,7 @@ This repository demonstrates the complete analytical lifecycle: **Automated Data
                        • Cross-Filtering & Geolocation Maps  
 ```
 ---
-## 📂 Repository Structure
+## Repository Structure
 ```text
 brazilian_ecommerce_project/
 ├── dashboard/
@@ -92,7 +89,7 @@ brazilian_ecommerce_project/
 └── README.md
 ```
 ---
-## 🗄️ Relational Data Modeling (Star Schema)
+## Relational Data Modeling (Star Schema)
 ```text
                           ┌──────────────────┐
                           │  dim_customers   │
@@ -116,7 +113,7 @@ brazilian_ecommerce_project/
 ```
 ---
 
-## 📊 Interactive Dashboard Previews (Power BI)
+## Interactive Dashboard Previews (Power BI)
 
 ### Page 1: Executive Sales Overview
 > *Executive-level snapshot tracking platform GMV, Net Revenue, Monthly Trends, Payment Distributions, and State-wise Revenue concentration.*
@@ -139,16 +136,16 @@ brazilian_ecommerce_project/
 
 ---
 
-## 💡 Executive Summary & Core Insights
+## Executive Summary & Core Insights
 
 * **Revenue Concentration (Pareto Principle):** The top **17 product categories** (~23% of total categories) generate **over 80% of total platform revenue**, dominated by *Health & Beauty*, *Watches & Gifts*, and *Bed, Bath & Table*.
-* **Logistics Latency vs. Customer Satisfaction:** Orders delivered **On-Time / Early** yield an average review score of **4.29 / 5.0 ⭐**, whereas **Late Deliveries** cause satisfaction to collapse to **2.57 / 5.0 ⭐** (a **-40% drop**), proving transit delay is the primary root cause of customer churn.
+* **Logistics Latency vs. Customer Satisfaction:** Orders delivered **On-Time / Early** yield an average review score of **4.29 / 5.0**, whereas **Late Deliveries** cause satisfaction to collapse to **2.57 / 5.0** (a **-40% drop**), proving transit delay is the primary root cause of customer churn.
 * **Payment Behavior:** **73.9%** of gross transactions are completed via **Credit Card** (leveraging installment plans), followed by **Boleto (19.0%)** and **Vouchers (5.6%)**.
 * **Geographic Centralization:** **São Paulo (`SP`)** serves as the primary commerce engine, generating over **40% of orders and revenue**.
 
 ---
 
-## 🛠️ Key Technical Implementations
+## Key Technical Implementations
 
 ### 1. Advanced SQL Analytics (`sql/kpi_queries.sql`)
 * **Window Functions:** Implemented `LAG()` to calculate Month-over-Month (MoM) revenue growth velocity.
