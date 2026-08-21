@@ -1,24 +1,9 @@
-# 📊 Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
+# Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-Desktop-F2C811?logo=powerbi&logoColor=black)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0-150458?logo=pandas&logoColor=white)
-
-An enterprise-grade, end-to-end Data Analytics project analyzing **100,000+ real-world commercial orders** from **Olist**, Brazil's largest department store marketplace. 
-
-This repository demonstrates the complete analytical lifecycle: **Automated Data Cleansing (Pandas)**, **Relational Star Schema Modeling & Ingestion (PostgreSQL)**, **Advanced KPI & Window Function Engineering (SQL)**, **Exploratory Data Analysis (Matplotlib/Seaborn)**, and **Interactive Business Intelligence Dashboard Design (Power BI)**.
-
----
-
-# Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
-
-<p align="left">
-  <img src="[https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)" />
-  <img src="[https://img.shields.io/badge/PostgreSQL-15-336791?style=for-the-badge&logo=postgresql&logoColor=white](https://img.shields.io/badge/PostgreSQL-15-336791?style=for-the-badge&logo=postgresql&logoColor=white)" />
-  <img src="[https://img.shields.io/badge/Power_BI-Desktop-F2C811?style=for-the-badge&logo=powerbi&logoColor=black](https://img.shields.io/badge/Power_BI-Desktop-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)" />
-  <img src="[https://img.shields.io/badge/Pandas-2.0-150458?style=for-the-badge&logo=pandas&logoColor=white](https://img.shields.io/badge/Pandas-2.0-150458?style=for-the-badge&logo=pandas&logoColor=white)" />
-</p>
 
 An enterprise-grade, end-to-end Data Analytics project analyzing **100,000+ real-world commercial orders** from **Olist**, Brazil's largest department store marketplace. 
 
