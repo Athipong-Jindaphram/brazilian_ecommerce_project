@@ -1,0 +1,15 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Virtual Environment & Python cache
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# VS Code settings
+.vscode/
+
+# Jupyter Checkpoints
+.ipynb_checkpoints/
