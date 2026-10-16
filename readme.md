@@ -1,143 +1,238 @@
-# Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
+# 🇧🇷 Brazilian E-Commerce (Olist) End-to-End Analytics Pipeline
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-Desktop-F2C811?logo=powerbi&logoColor=black)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0-150458?logo=pandas&logoColor=white)
 
-An enterprise-grade, end-to-end Data Analytics project analyzing **100,000+ real-world commercial orders** from **Olist**, Brazil's largest department store marketplace. 
+An enterprise-grade, end-to-end Data Analytics project analyzing **100,000+ real-world commercial orders** from **Olist**, Brazil's largest department store marketplace.
 
 This repository demonstrates the complete analytical lifecycle: **Automated Data Cleansing (Pandas)**, **Relational Star Schema Modeling & Ingestion (PostgreSQL)**, **Advanced KPI & Window Function Engineering (SQL)**, **Exploratory Data Analysis (Matplotlib/Seaborn)**, and **Interactive Business Intelligence Dashboard Design (Power BI)**.
 
 ---
 
-## System Architecture & Data Flow
+## 🏗️ System Architecture & Data Flow
 
 ```text
-                     [ 8 Raw Olist Datasets (CSV) ]
-                                   │
-                                   ▼
-          ┌──────────────────────────────────────────────────┐
-          │  01_data_cleaning.ipynb (ETL & Wrangling)        │
-          │  • Type Casting (Datetime, Numeric)              │
-          │  • Foreign Key Integrity & Missing Value Impute  │
-          │  • Star Schema Normalization                     │
-          └────────────────────────┬─────────────────────────┘
-                                   │
-                ┌──────────────────┴──────────────────┐
-                ▼                                     ▼
-   [ Processed CSV Entities ]            [ PostgreSQL Database (`olist_db`) ]
-   • 4 Dimension Tables                  • Star Schema Constraints
-   • 4 Fact Tables                       • Primary & Foreign Key Indexes
-                │                                     │
-                ▼                                     ▼
-   ┌───────────────────────────────┐     ┌──────────────────────────────────┐
-   │ 02_eda_and_advanced_analytics │     │ kpi_queries.sql                  │
-   │ • Pareto 80/20 Rule Analysis  │     │ • 10 Core Business KPIs          │
-   │ • RFM Customer Segmentation   │     │ • Window Functions (LAG, OVER)   │
-   │ • Logistics Latency vs. CSAT  │     │ • CTEs & Cumulative Aggregations │
-   └───────────────┬───────────────┘     └─────────────────┬────────────────┘
-                   │                                       │
-                   └───────────────────┬───────────────────┘
-                                       ▼
-                       [ Power BI Interactive Dashboard ]
-                       • Multi-Page Storytelling Report
-                       • Dynamic DAX KPI Measures
-                       • Cross-Filtering & Geolocation Maps  
+                 [ 8 Raw Olist Datasets (CSV) ]
+                              │
+                              ▼
+        ┌──────────────────────────────────────────────┐
+        │       01_data_cleaning.ipynb                 │
+        │       ETL & Data Wrangling                   │
+        │                                              │
+        │  • Type Casting (Datetime, Numeric)          │
+        │  • Foreign Key Integrity & Missing Values   │
+        │  • Star Schema Normalization                 │
+        └──────────────────────┬───────────────────────┘
+                               │
+                 ┌─────────────┴─────────────┐
+                 ▼                           ▼
+       [ Processed CSV Entities ]   [ PostgreSQL: olist_db ]
+                 │                           │
+          ┌──────┴──────┐            ┌───────┴────────┐
+          │             │            │                │
+          ▼             ▼            ▼                ▼
+   4 Dimension      4 Fact      Star Schema      KPI Queries
+      Tables        Tables      Constraints      & Indexes
+          │             │            │                │
+          ▼             ▼            └───────┬────────┘
+┌──────────────────────────────┐             │
+│ 02_eda_and_advanced_analytics│             │
+│                              │             │
+│ • Pareto 80/20 Analysis      │             │
+│ • RFM Customer Segmentation  │             │
+│ • Logistics Latency vs. CSAT │             │
+└───────────────┬──────────────┘             │
+                │                            │
+                └─────────────┬──────────────┘
+                              ▼
+             [ Power BI Interactive Dashboard ]
+                              │
+             ┌────────────────┴────────────────┐
+             │                                 │
+             ▼                                 ▼
+    Executive Overview            Customer Experience
+                                   & Logistics Performance
+
+    • DAX KPI Measures
+    • Time Intelligence (MoM, YoY)
+    • Cross-Filtering & Geolocation Maps
 ```
+
 ---
-## Repository Structure
+
+## 📁 Project Structure
+
 ```text
 brazilian_ecommerce_project/
+│
 ├── dashboard/
-│   ├── olist_dashboard.pbix              # Interactive Power BI report file
-│   └── screenshots/                      # High-resolution dashboard previews
-│       ├── dashboard_1.png               # Page 1: Executive Sales Overview
-│       ├── dashboard_2.png               # Page 2: Product & Seller Performance
-│       └── dashboard_3.png               # Page 3: Logistics & Customer Satisfaction
+│   ├── olist_dashboard.pbix
+│   └── screenshots/
+│       ├── dash-1.png
+│       └── dash-2.png
+│
 ├── datasets/
-│   ├── raw/                              # Original raw data from Kaggle/Olist
-│   └── processed/                        # Cleaned & transformed Star Schema tables
+│   ├── raw/
+│   └── processed/
+│
 ├── docs/
-│   ├── business_objective.md             # 10 Core analytical business questions
-│   ├── data_cleaning_plan.md             # Data cleansing rules & schema design
-│   ├── data_dictionary.xlsx              # Comprehensive metadata & dictionary
-│   ├── kpi_mapping.md                    # Business questions to KPI metric mapping
-│   ├── erd.dbml                          # DBML relational schema code
-│   └── erd.pdf                           # Visual Star Schema ERD diagram
+│   ├── business_objective.md
+│   ├── data_cleaning_plan.md
+│   ├── data_dictionary.xlsx
+│   ├── kpi_mapping.md
+│   ├── erd.dbml
+│   └── erd.pdf
+│
 ├── notebooks/
-│   ├── 01_data_cleaning.ipynb           # Data preprocessing, validation & pipeline
-│   └── 02_eda_and_advanced_analytics.ipynb # Advanced EDA, RFM, Pareto & visualizations
+│   ├── 01_data_cleaning.ipynb
+│   └── 02_eda_and_advanced_analytics.ipynb
+│
 ├── sql/
-│   └── kpi_queries.sql                  # Production SQL queries (CTEs, Window functions)
-├── .gitignore                            # Environment & system cache exclusions
+│   └── kpi_queries.sql
+│
+├── .gitignore
 └── README.md
 ```
+
 ---
-## Relational Data Modeling (Star Schema)
+
+## 🗄️ Database Schema — Star Schema ERD
+
+The database uses a star-schema-oriented structure with dimension tables and fact tables to support business analytics.
+
 ```text
-                          ┌──────────────────┐
-                          │  dim_customers   │
-                          └────────┬─────────┘
-                                   │ (1:N)
-                                   ▼
+                         ┌──────────────────┐
+                         │  dim_customers   │
+                         └────────┬─────────┘
+                                  │ (1:N)
+                                  ▼
 ┌───────────────────┐     ┌──────────────────┐     ┌────────────────────┐
 │fact_order_payments│◄────┤   fact_orders    ├────►│ fact_order_reviews │
-└───────────────────┘(N:1)└────────┬─────────┘(1:1)└────────────────────┘
+└───────────────────┘     └────────┬─────────┘     └────────────────────┘
+                                   │
                                    │ (1:N)
                                    ▼
                           ┌──────────────────┐
                           │ fact_order_items │
                           └────────▲─────────┘
+                                   │
                                    │ (N:1)
-                   ┌───────────────┴───────────────┐
-                   │                               │
-           ┌───────┴────────┐              ┌───────┴────────┐
-           │  dim_products  │              │  dim_sellers   │
-           └────────────────┘              └────────────────┘
+                    ┌──────────────┴──────────────┐
+                    │                             │
+           ┌────────┴────────┐           ┌────────┴────────┐
+           │  dim_products  │           │  dim_sellers   │
+           └────────────────┘           └────────────────┘
 ```
----
 
-## Interactive Dashboard Previews (Power BI)
-
-### Page 1: Executive Sales Overview
-> *Executive-level snapshot tracking platform GMV, Net Revenue, Monthly Trends, Payment Distributions, and State-wise Revenue concentration.*
-
-![Executive Sales Overview](dashboard/screenshots/dashboard_1.png)
+The diagram represents the relationships provided for the project. Refer to `docs/erd.dbml` and `docs/erd.pdf` for the schema documentation.
 
 ---
 
-### Page 2: Product & Seller Analytics
-> *Product category ranking, 80/20 Pareto revenue distribution, SKU catalog performance, and top-tier merchant benchmarking.*
+## 📊 Interactive Dashboard Previews (Power BI)
 
-![Product & Seller Analytics](dashboard/screenshots/dashboard_2.png)
+### Page 1: Executive Overview Dashboard
 
----
+![Executive Overview Dashboard](dashboard/screenshots/dash-1.png)
 
-### Page 3: Logistics & Customer Satisfaction (CSAT)
-> *In-depth correlation between shipping latency, estimated delivery buffer vs. actual delivery, and customer review scores.*
+> Executive-level snapshot tracking Net Revenue, Cancellation Rates, Average Order Values, Total Orders, Seller Risk Radar (Volume vs. Delivery Delay), and Geographic Performance across Brazil.
 
-![Logistics & CSAT](dashboard/screenshots/dashboard_3.png)
+### Page 2: Customer Experience & Logistics Performance Dashboard
 
----
+![Customer Experience & Logistics Performance Dashboard](dashboard/screenshots/dash-2.png)
 
-## Executive Summary & Core Insights
-
-* **Revenue Concentration (Pareto Principle):** The top **17 product categories** (~23% of total categories) generate **over 80% of total platform revenue**, dominated by *Health & Beauty*, *Watches & Gifts*, and *Bed, Bath & Table*.
-* **Logistics Latency vs. Customer Satisfaction:** Orders delivered **On-Time / Early** yield an average review score of **4.29 / 5.0**, whereas **Late Deliveries** cause satisfaction to collapse to **2.57 / 5.0** (a **-40% drop**), proving transit delay is the primary root cause of customer churn.
-* **Payment Behavior:** **73.9%** of gross transactions are completed via **Credit Card** (leveraging installment plans), followed by **Boleto (19.0%)** and **Vouchers (5.6%)**.
-* **Geographic Centralization:** **São Paulo (`SP`)** serves as the primary commerce engine, generating over **40% of orders and revenue**.
+> In-depth analysis tracking Customer Satisfaction (Review Scores distribution), Logistics Pain Points by State and Delivery Costs, State-wise Delivery Days vs. Review Scores, and Top Categories driven by Installment Tiers.
 
 ---
 
-## Key Technical Implementations
+## 📌 Executive Summary & Core Insights
 
-### 1. Advanced SQL Analytics (`sql/kpi_queries.sql`)
-* **Window Functions:** Implemented `LAG()` to calculate Month-over-Month (MoM) revenue growth velocity.
-* **Cumulative Totals:** Calculated running revenue shares with `SUM() OVER(ORDER BY ...)` for Pareto categorization.
-* **Complex Aggregations:** Measured Repeat Customer Rates and Customer Lifetime Value (CLV) using Common Table Expressions (CTEs).
+- **Financial Performance & Growth Tracking:** Monitored Net Revenue trends with MoM and YoY comparisons, identifying peak sales periods and cancellation rate fluctuations, with cancellation averages around **0.29%**.
+- **Seller Risk Radar:** Evaluated merchant operational risks by plotting total order volumes against average delivery days to identify bottleneck sellers associated with logistics delays.
+- **Logistics Latency vs. Customer Satisfaction:** Analyzed regional delivery performance across Brazilian states, highlighting relationships between delivery timeframes and customer review scores, and identifying logistics cost outliers.
+- **Payment Behavior & Installment Analysis:** Evaluated transaction structures across installment tiers, including one-installment and short-/long-term payment plans, grouped by top product categories.
+- **Geographic Concentration:** Identified **São Paulo (`SP`)** as the dominant commercial hub with the highest concentration of orders and revenue.
 
-### 2. Python EDA & Advanced Analytics (`notebooks/`)
-* **Data Wrangling:** Automated timestamp parsing, handled missing dimensional attributes, and removed invalid status transactions.
-* **RFM Customer Segmentation:** Scored customers across **Recency, Frequency, and Monetary** metrics to partition user bases into Champions, Loyal Customers, and At-Risk segments.
-* **Publication-Quality Plots:** Built styled Line, Bar, and Donut charts with customized data labels and directional callout lines using Matplotlib & Seaborn.
+---
+
+## 💻 Key Technical Implementations
+
+### 1. Advanced SQL Analytics — `sql/kpi_queries.sql`
+
+- **Window Functions:** Implemented `LAG()` to calculate Month-over-Month (MoM) revenue growth.
+- **Cumulative Totals:** Calculated running revenue shares using `SUM() OVER(ORDER BY ...)` for Pareto categorization.
+- **Complex Aggregations:** Measured Repeat Customer Rates and Customer Lifetime Value (CLV) using Common Table Expressions (CTEs).
+- **Business KPIs:** Organized SQL queries around 10 core business KPIs.
+- **Analytical Techniques:** Applied CTEs, window functions, and cumulative aggregations.
+
+### 2. Python EDA & Advanced Analytics — `notebooks/`
+
+- **Data Wrangling:** Automated timestamp parsing, handled missing dimensional attributes, and removed invalid status transactions.
+- **RFM Customer Segmentation:** Scored customers across **Recency, Frequency, and Monetary** metrics to classify distinct customer behavior tiers.
+- **Pareto Analysis:** Applied the 80/20 rule to analyze contribution and concentration.
+- **Logistics Analysis:** Examined the relationship between delivery delays and customer satisfaction.
+- **Data Visualization:** Built Line, Bar, and Donut charts with customized data labels using Matplotlib and Seaborn.
+
+### 3. Data Cleaning & Transformation — `01_data_cleaning.ipynb`
+
+- Converted data types, including datetime and numeric fields.
+- Validated foreign key integrity.
+- Handled missing values.
+- Prepared processed CSV entities for downstream analytics.
+- Organized the data into dimension and fact tables.
+
+### 4. Power BI Dashboard
+
+- Designed a multi-page interactive report.
+- Developed dynamic DAX KPI measures.
+- Applied time intelligence for MoM and YoY analysis.
+- Implemented cross-filtering and geolocation maps.
+- Presented executive-level metrics and customer experience analytics.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python 3.10+ |
+| Data Manipulation | Pandas 2.0 |
+| Data Visualization | Matplotlib, Seaborn |
+| Database | PostgreSQL 15 |
+| Query Language | SQL |
+| Business Intelligence | Power BI Desktop |
+| Analytics Techniques | RFM, Pareto Analysis, Window Functions, CTEs |
+| Data Modeling | Star Schema |
+
+---
+
+## 📂 Documentation
+
+| File | Description |
+|---|---|
+| `docs/business_objective.md` | Core analytical business questions |
+| `docs/data_cleaning_plan.md` | Data cleansing rules and schema design |
+| `docs/data_dictionary.xlsx` | Data metadata and dictionary |
+| `docs/kpi_mapping.md` | Mapping between business questions and KPI metrics |
+| `docs/erd.dbml` | DBML relational schema code |
+| `docs/erd.pdf` | Visual Star Schema ERD diagram |
+| `sql/kpi_queries.sql` | SQL queries for business KPIs and advanced analytics |
+
+---
+
+## 🎯 Project Objectives
+
+- Analyze Brazilian e-commerce order data.
+- Build a data cleaning and transformation pipeline using Python and Pandas.
+- Implement a relational star schema in PostgreSQL.
+- Develop advanced SQL queries for business KPIs.
+- Perform exploratory data analysis and customer segmentation.
+- Analyze sales performance, customer satisfaction, and logistics.
+- Develop an interactive Power BI dashboard for business intelligence.
+
+---
+
+## 📄 Disclaimer
+
+This project is intended for data analytics, educational, and portfolio demonstration purposes.
